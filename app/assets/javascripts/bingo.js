@@ -16,8 +16,6 @@ $(function() {
 		};
 	};
 
-	// console.log(gon.board1);
-
 	$('button').on('click', function(e) {
 		// console.log("hello");
 		var ajaxRequest = $.ajax({
@@ -25,16 +23,26 @@ $(function() {
 			type: 'GET'
 		});
 		ajaxRequest.done(function(response) {
-			if (response.letter) {
-				$('p').html(response.letter + response.number);
+			// console.log(response, "response");
+
+			if (response.first.letter) {
+				$('.board1').html("Board 1: " + response.first.letter + response.first.number);
 			} else {
-				myRow = response.row+1;
-				myColumn = response.column+1;
+				$('.board1').html("Bingo!");
+				myRow = response.first.row+1;
+				myColumn = response.first.column+1;
 				$('.table-1 tr:nth-child('+myRow+') td:nth-child('+myColumn+')').html("X");
-				console.log(response);
+				console.log(response.first);
 			}
-			// console.log(response);
-			// console.log("success");
+			if (response.second.letter) {
+				$('.board2').html("Board 2: " + response.second.letter + response.second.number);
+			} else {
+				$('.board2').html("Bingo!");
+				myRow = response.second.row+1;
+				myColumn = response.second.column+1;
+				$('.table-2 tr:nth-child('+myRow+') td:nth-child('+myColumn+')').html("X");
+				console.log(response.second);
+			}
 		});
 		ajaxRequest.fail(function() {
 			console.log("error");
