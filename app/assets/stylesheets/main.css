@@ -1,0 +1,13 @@
+td {
+	width: 70px;
+	height: 70px;
+	border: 1px solid black;
+	display: inline-block;
+	background: yellow;
+	text-align: center;
+	font-size: 40px;
+}
+
+table {
+	display: inline-block;
+}
